@@ -9,7 +9,7 @@ public class Main {
 
     public static void getData(){
 
-        boolean runAgain = true;
+        boolean runAgain;
 
         System.out.println("Hello! This program simply finds the area of a rectangle!");
 
@@ -43,25 +43,26 @@ public class Main {
     public static double checker(String testValue) {
 
         Scanner scanner = new Scanner(System.in);
-
         double validValue = 0;
         boolean isValid;
+
         do {                      // Do while loop that is handling all the testing. If
             isValid = true;       // a number is negative or contains any character other
             try {                 // than a number, then it will run again.
                 validValue = Double.parseDouble(testValue);
 
-
+                if (validValue < 0 ) { // This if statement must be RIGHT after the parsed valued.
+                                       // This is because we are assigning values in the catch
+                                       // code block and must then be PARSED before compared to 0.
+                                       // We also still have to test for bad data as well and therefore,
+                    isValid = false;   // it must be here.
+                    System.out.println("You can not find the area with a negative number!");
+                    System.out.println("Please try again.");
+                    testValue = scanner.nextLine();
+                }
             } catch (NumberFormatException badUserData) {
                 isValid = false;
                 System.out.println("Only numbers please!");
-                System.out.println("Please try again.");
-                testValue = scanner.nextLine();
-            }
-
-            if (validValue < 0 ) {
-                isValid = false;
-                System.out.println("You can not find the area with a negative number!");
                 System.out.println("Please try again.");
                 testValue = scanner.nextLine();
             }
