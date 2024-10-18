@@ -2,10 +2,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Wall area = new Wall(); // Instantiating our object with the values we have tested for.
-        area.setHeight(9);
-        getData(); // Starts the program
-        System.out.println(area.getArea());
+
+        getData(); // Starts the program, used to make code clearer
 
     }
 
@@ -53,15 +51,17 @@ public class Main {
             try {                 // than a number, then it will run again.
                 validValue = Double.parseDouble(testValue);
 
-                if (validValue < 0 ) {
-                    isValid = false;
-                    System.out.println("You can not find the area with a negative number!");
-                    System.out.println("Please try again.");
-                    testValue = scanner.nextLine();
-                }
+
             } catch (NumberFormatException badUserData) {
                 isValid = false;
                 System.out.println("Only numbers please!");
+                System.out.println("Please try again.");
+                testValue = scanner.nextLine();
+            }
+
+            if (validValue < 0 ) {
+                isValid = false;
+                System.out.println("You can not find the area with a negative number!");
                 System.out.println("Please try again.");
                 testValue = scanner.nextLine();
             }
